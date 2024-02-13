@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: "fish-stories-db"
+      # So you don't have to use root, but you can if you like
+      MYSQL_ROOT_PASSWORD: "pa55word"
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - "3307:3306"
+    expose:
+      # Opens port 3306 on the container
+      - "3306"
