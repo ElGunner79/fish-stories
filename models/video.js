@@ -22,14 +22,6 @@ const Video = db.Sequelize.define("Video", {
     location: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    createdTime: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    },
-    updatedTime: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
     }
     },
     {

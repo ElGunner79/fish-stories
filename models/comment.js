@@ -18,14 +18,6 @@ const Comment = db.Sequelize.define("Comment", {
     content: {
         type: DataTypes.TEXT,
         allowNull: false
-    },
-    createdTime: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    },
-    updatedTime: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
     }
 },
     {
