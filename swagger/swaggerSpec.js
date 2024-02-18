@@ -15,7 +15,7 @@ const swaggerDocument = {
     tags: [
         {
             name: 'Fish Stories',
-            description: 'API for video sharing posts',
+            description: 'API for video sharing web app',
         },
     ],
     schemes: ['http'],
