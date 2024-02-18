@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const {handleInvalidJson, handleUnauthorized, handleNotFound, handleAllOtherErrors} = require("./errors/errorHandler");
-const morganMiddleware = require("./logging/morganMIddleware");
+const morganMiddleware = require("./logging/morganMiddleware");
 const Logger = require("./logging/logger");
 
 // Database
