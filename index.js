@@ -17,16 +17,18 @@ app.use(express.json());
 app.use(morganMiddleware);
 
 //Swagger
-if(process.env.NODE_ENV === "development") {
-    const swaggerUi = require("swagger-ui-express");
-    const swaggerSpec = require("./swagger/swaggerSpec");
-    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec.default));
-}
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger/swaggerSpec");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec.default));
 
 //Routes
+//add user routes
 app.use("/api/users", require("./routes/userRoutes"));
+//add video routes
 app.use("/api/videos", require("./routes/videoRoutes"));
+//add like routes
 app.use("/api/likes", require("./routes/likeRoutes"));
+//add comment routes
 app.use("/api/comments", require("./routes/commentRoutes"));
 
 app.get("/", (req, res) => {
