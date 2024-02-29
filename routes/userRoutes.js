@@ -103,6 +103,7 @@ router.get("/:id", idParamValidator, async (req, res, next) => {
  *        type: object
  *        required:
  *         - name
+ *         - surname
  *         - email
  *         - password
  *        properties:
@@ -169,7 +170,7 @@ router.post("/", userValidator, async (req, res, next) => {
  *        properties:
  *         email:
  *          type: string
- *          example: richard.brazao@outlook.com
+ *          example: john@dudes.com
  *         password:
  *          type: string
  *          example: password
@@ -218,15 +219,19 @@ router.post("/login", async (req, res, next) => {
  *        type: object
  *        required:
  *         - name
+ *         - surname
  *         - email
  *         - password
  *        properties:
  *         name:
  *          type: string
- *          example: Richard Brazao
+ *          example: John
+ *         surname:
+ *          type: string
+ *          example: Doe
  *         email:
  *          type: string
- *          example: richard.brazao@outlook.com
+ *          example: john@dudes.com
  *         password:
  *          type: string
  *          example: password
