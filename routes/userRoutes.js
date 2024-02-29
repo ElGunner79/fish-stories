@@ -6,10 +6,10 @@ const router = express.Router();
 const userController = require("../controllers/userController");
 // const multer = require("multer");
 // const upload = multer({ dest: process.env.UPLOADS_DIR || "uploads" });
-// const bcrypt = require("bcrypt");
-// const saltRounds = 10;
-// const jwt = require('jsonwebtoken');
-// const verifyToken = require("../auth/authMiddleware");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+const verifyToken = require("../auth/authMiddleware");
 
 /**
  * @swagger
@@ -26,14 +26,14 @@ const userController = require("../controllers/userController");
  *      '500':
  *        description: Server error
  */
-// router.get("/", verifyToken, async (req, res, next) => {
-//     try {
-//         const data = await userController.getUsers();
-//         res.send({ result: 200, data: data });
-//     } catch (err) {
-//         next(err);
-//     }
-// });
+router.get("/", verifyToken, async (req, res, next) => {
+    try {
+        const data = await userController.getUsers();
+        res.send({ result: 200, data: data });
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.get("/", async (req, res, next) => {
     try {
@@ -93,31 +93,87 @@ router.get("/:id", idParamValidator, async (req, res, next) => {
  * @swagger
  * /api/users:
  *  post:
- *    description: Use to create a user
- *    consumes:
- *      - multipart/form-data
+ *    description: Use to create a new user
  *    tags:
  *      - Users
  *    requestBody:
  *     content:
- *      multipart/form-data:
+ *      application/json:
  *       schema:
  *        type: object
+ *        required:
+ *         - name
+ *         - email
+ *         - password
  *        properties:
  *         name:
  *          type: string
- *          example: Richard Brazao
+ *          example: John
+ *         surname:
+ *          type: string
+ *          example: Doe
+ *         email:
+ *          type: string
+ *          example: john@dudes.com
+ *         password:
+ *          type: string
+ *          example: password
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ *      '400':
+ *        description: Invalid JSON
+ *      '404':
+ *        description: User not found
+ *      '422':
+ *        description: Validation error
+ *      '500':
+ *        description: Server error
+ */
+router.post("/", userValidator, async (req, res, next) => {
+    try {
+        const user = req.body;
+        user.password = await bcrypt.hash(user.password, saltRounds);
+        const errors = validationResult(req);
+        if (errors.isEmpty()) {
+            const data = await userController.createUser(user);
+            res.send({ result: 200, data: data });
+        } else {
+            res.status(422).json({ result: 422, errors: errors.array() });
+        }
+    } catch (err) {
+        // handle duplicate email error
+        if (err.name === "SequelizeUniqueConstraintError") {
+            res.status(422).json({ result: 422, errors: err.errors });
+        } else {
+            next(err);
+        }
+    }
+}
+);
+
+/**
+ * @swagger
+ * /api/users/login:
+ *  post:
+ *    description: Use to login a user
+ *    consumes:
+ *      - application/json
+ *    tags:
+ *      - Users
+ *    requestBody:
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: object
+ *        properties:
  *         email:
  *          type: string
  *          example: richard.brazao@outlook.com
  *         password:
  *          type: string
  *          example: password
- *         avatar:
- *          type: string
- *          format: binary
  *        required:
- *         - name
  *         - email
  *         - password
  *    responses:
@@ -130,98 +186,23 @@ router.get("/:id", idParamValidator, async (req, res, next) => {
  *      '500':
  *        description: Server error
  * */
-// router.post(
-//     "/",
-//     upload.single("avatar"),
-//     userValidator,
-//     async (req, res, next) => {
-//         try {
-//             const errors = validationResult(req);
-//             if (errors.isEmpty()) {
-//                 let user = req.body;
-//                 user.password = await bcrypt.hash(user.password, saltRounds);
-//                 if (req.file) user.avatar = req.file.filename;
-//                 const data = await userController.createUser(user);
-//                 res.send({ result: 200, data: data });
-//             } else {
-//                 res.status(422).json({ result: 422, errors: errors.array() });
-//             }
-//         } catch (err) {
-//             // handle duplicate email error
-//             if (err.name === "SequelizeUniqueConstraintError") {
-//                 res.status(422).json({ result: 422, errors: err.errors });
-//             } else {
-//                 next(err);
-//             }
-//         }
-//     }
-// );
-router.post("/", userValidator, async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
     try {
-        const errors = validationResult(req);
-        if (errors.isEmpty()) {
-            const data = await userController.createUser(req.body);
+        const user = await userController.getUserByEmail(req.body.email);
+        if (user && (await bcrypt.compare(req.body.password, user.password))) {
+            // Passwords match - create token
+            const token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
+                expiresIn: '1h',
+            });
+            const data = { token: token, user: user }
             res.send({ result: 200, data: data });
         } else {
-            res.status(422).json({ result: 422, errors: errors.array() });
+            res.status(404).json({ result: 404, message: "User not found" });
         }
     } catch (err) {
         next(err);
     }
-}
-);
-
-// /**
-//  * @swagger
-//  * /api/users/login:
-//  *  post:
-//  *    description: Use to login a user
-//  *    consumes:
-//  *      - application/json
-//  *    tags:
-//  *      - Users
-//  *    requestBody:
-//  *     content:
-//  *      application/json:
-//  *       schema:
-//  *        type: object
-//  *        properties:
-//  *         email:
-//  *          type: string
-//  *          example: richard.brazao@outlook.com
-//  *         password:
-//  *          type: string
-//  *          example: password
-//  *        required:
-//  *         - email
-//  *         - password
-//  *    responses:
-//  *      '200':
-//  *        description: A successful response
-//  *      '404':
-//  *        description: User not found
-//  *      '422':
-//  *         description: Validation error
-//  *      '500':
-//  *        description: Server error
-//  * */
-// router.post("/login", async (req, res, next) => {
-//     try {
-//         const user = await userController.getUserByEmail(req.body.email);
-//         if (user && (await bcrypt.compare(req.body.password, user.password))) {
-//             // Passwords match - create token
-//             const token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
-//                 expiresIn: '1h',
-//             });
-//             const data = { token: token, user: user }
-//             res.send({ result: 200, data: data });
-//         } else {
-//             res.status(404).json({ result: 404, message: "User not found" });
-//         }
-//     } catch (err) {
-//         next(err);
-//     }
-// });
+});
 
 /**
  * @swagger

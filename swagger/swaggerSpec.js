@@ -7,6 +7,18 @@ const swaggerDocument = {
         version: '1.0.0',
         description: 'My Capstone project - Fish Stories - application API',
     },
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT",
+            },
+        },
+    },
+    security: [{
+        bearerAuth: []
+    }],
     servers: [
         {
             url: process.env.BASE_URL || 'http://localhost:3001',
