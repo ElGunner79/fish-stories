@@ -24,6 +24,8 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger/swaggerSpec");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec.default));
 
+app.use("/uploads", express.static("uploads"));
+
 //Routes
 //add user routes
 app.use("/api/users", require("./routes/userRoutes"));

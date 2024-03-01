@@ -19,3 +19,24 @@
 2024-03-01 12:10:42:1042 error: Invalid value { email: 'richard@gmail.com' }
 2024-03-01 12:12:46:1246 error: Invalid value { email: 'richard@gmail.com' }
 2024-03-01 12:14:11:1411 error: Invalid value { email: 'richard@gmail.com' }
+2024-03-01 17:22:03:223 error: notNull Violation: Video.videoTitle cannot be null,
+notNull Violation: Video.videoDesc cannot be null,
+notNull Violation: Video.location cannot be null
+2024-03-01 17:28:11:2811 error: notNull Violation: Video.videoTitle cannot be null,
+notNull Violation: Video.videoDesc cannot be null,
+notNull Violation: Video.location cannot be null
+2024-03-01 17:28:54:2854 error: notNull Violation: Video.videoTitle cannot be null,
+notNull Violation: Video.videoDesc cannot be null,
+notNull Violation: Video.location cannot be null
+2024-03-01 17:36:25:3625 error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+2024-03-01 17:40:34:4034 error: errors.isEmpty is not a function
+2024-03-01 17:40:57:4057 error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+2024-03-01 17:42:37:4237 error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+2024-03-01 17:43:19:4319 error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+2024-03-01 17:44:10:4410 error: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+2024-03-01 17:51:27:5127 error: videoPath is not defined
+2024-03-01 17:51:45:5145 error: notNull Violation: Video.videoTitle cannot be null,
+notNull Violation: Video.videoDesc cannot be null,
+notNull Violation: Video.location cannot be null,
+notNull Violation: Video.filename cannot be null
+2024-03-01 17:53:51:5351 error: Unknown column 'filename' in 'field list'
