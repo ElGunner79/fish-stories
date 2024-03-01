@@ -41,3 +41,33 @@ notNull Violation: Video.location cannot be null,
 notNull Violation: Video.filename cannot be null
 2024-03-01 17:53:51:5351 error: Unknown column 'filename' in 'field list'
 2024-03-01 19:34:33:3433 error: notNull Violation: Video.userId cannot be null
+2024-03-01 20:39:46:3946 error: Not Found
+2024-03-01 20:39:46:3946 error: Not Found
+2024-03-01 20:43:49:4349 error: Not Found
+2024-03-01 20:43:49:4349 error: Not Found
+2024-03-01 20:44:50:4450 error: Not Found
+2024-03-01 20:44:50:4450 error: Not Found
+2024-03-01 20:49:12:4912 error: Not Found
+2024-03-01 20:49:12:4912 error: Not Found
+2024-03-01 21:08:59:859 error: Not Found
+2024-03-01 21:08:59:859 error: Not Found
+2024-03-01 21:10:55:1055 error: Not Found
+2024-03-01 21:10:55:1055 error: Not Found
+2024-03-01 21:13:14:1314 error: Not Found
+2024-03-01 21:13:14:1314 error: Not Found
+2024-03-01 21:13:49:1349 error: Not Found
+2024-03-01 21:13:49:1349 error: Not Found
+2024-03-01 21:20:27:2027 error: Not Found
+2024-03-01 21:20:27:2027 error: Not Found
+2024-03-01 21:21:15:2115 error: Not Found
+2024-03-01 21:21:15:2115 error: Not Found
+2024-03-01 21:21:57:2157 error: Not Found
+2024-03-01 21:21:57:2157 error: Not Found
+2024-03-01 21:23:30:2330 error: Not Found
+2024-03-01 21:23:30:2330 error: Not Found
+2024-03-01 21:26:18:2618 error: Not Found
+2024-03-01 21:26:18:2618 error: Not Found
+2024-03-01 21:26:44:2644 error: Not Found
+2024-03-01 21:26:44:2644 error: Not Found
+2024-03-01 21:27:27:2727 error: Not Found
+2024-03-01 21:27:27:2727 error: Not Found
