@@ -41,6 +41,8 @@ const getVideosByUser = async (id) => {
  * @returns {Promise<Video>}
  */
 const createVideo = async (data) => {
+    console.log("test");
+    console.log(data);
     const video = await Video.create(data);
     return video;
 }
