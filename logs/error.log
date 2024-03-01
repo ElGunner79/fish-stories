@@ -40,3 +40,4 @@ notNull Violation: Video.videoDesc cannot be null,
 notNull Violation: Video.location cannot be null,
 notNull Violation: Video.filename cannot be null
 2024-03-01 17:53:51:5351 error: Unknown column 'filename' in 'field list'
+2024-03-01 19:34:33:3433 error: notNull Violation: Video.userId cannot be null
