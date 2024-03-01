@@ -3,6 +3,7 @@ const express = require("express");
 const {handleInvalidJson, handleUnauthorized, handleNotFound, handleAllOtherErrors} = require("./errors/errorHandler");
 const morganMiddleware = require("./logging/morganMiddleware");
 const Logger = require("./logging/logger");
+var cors = require('cors');
 
 // Database
 const db = require("./db");
@@ -15,6 +16,8 @@ const app = express();
 app.use(express.json());
 
 app.use(morganMiddleware);
+
+app.use(cors());
 
 //Swagger
 const swaggerUi = require("swagger-ui-express");

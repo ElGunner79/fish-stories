@@ -8,3 +8,14 @@
 2024-03-01 09:30:58:3058 error: Not Found
 2024-03-01 09:38:16:3816 error: Not Found
 2024-03-01 09:38:16:3816 error: Not Found
+2024-03-01 11:26:13:2613 error: data and salt arguments required
+2024-03-01 11:28:20:2820 error: data and salt arguments required
+2024-03-01 11:30:15:3015 error: data and salt arguments required
+2024-03-01 11:32:12:3212 error: Unexpected token o in JSON at position 1
+2024-03-01 12:08:19:819 error: Invalid value { email: 'alex@gmail.com' }
+2024-03-01 12:08:41:841 error: Invalid value { email: 'alexb@gmail.com' }
+2024-03-01 12:09:36:936 error: Invalid value { email: 'richardbrazao@me.com' }
+2024-03-01 12:09:47:947 error: Invalid value { email: 'richardbrazao@me.com' }
+2024-03-01 12:10:42:1042 error: Invalid value { email: 'richard@gmail.com' }
+2024-03-01 12:12:46:1246 error: Invalid value { email: 'richard@gmail.com' }
+2024-03-01 12:14:11:1411 error: Invalid value { email: 'richard@gmail.com' }

@@ -134,6 +134,7 @@ router.get("/:id", idParamValidator, async (req, res, next) => {
 router.post("/", userValidator, async (req, res, next) => {
     try {
         const user = req.body;
+        console.log(user);
         user.password = await bcrypt.hash(user.password, saltRounds);
         const errors = validationResult(req);
         if (errors.isEmpty()) {
@@ -189,6 +190,7 @@ router.post("/", userValidator, async (req, res, next) => {
  * */
 router.post("/login", async (req, res, next) => {
     try {
+        console.log(req.body);
         const user = await userController.getUserByEmail(req.body.email);
         if (user && (await bcrypt.compare(req.body.password, user.password))) {
             // Passwords match - create token
